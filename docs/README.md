@@ -1,4 +1,6 @@
-# Projet Clusterisation de Conteneurs
+
+# Projet Clusterisation de Conteneurs  
+OUAHABI Ibrahim 5IW3 ESGI Paris
 
 ## 📦 Objectif
 
@@ -18,31 +20,29 @@ Déployée sur un cluster Kubernetes pour démontrer :
 ## 📁 Structure du projet
 
 ```
-
 /backend/backend-app        → NestJS backend
 /frontend/frontend-app      → React frontend
 /k8s                       → Manifests Kubernetes (YAML)
-
-````
+```
 
 ---
 
 ## 🚀 Étapes d’installation
 
 ### 1️⃣ Démarrer Kubernetes avec Docker Desktop
+
 - Active Kubernetes dans Docker Desktop
 - Vérifie :
-  ```bash
-  kubectl cluster-info
-  kubectl get nodes
-````
+```bash
+kubectl cluster-info
+kubectl get nodes
+```
 
 ---
 
 ### 2️⃣ Construire et pousser les images Docker
 
 Backend :
-
 ```bash
 cd backend/backend-app
 docker build -t iouahabi/backend:latest .
@@ -50,7 +50,6 @@ docker push iouahabi/backend:latest
 ```
 
 Frontend :
-
 ```bash
 cd frontend/frontend-app
 docker build -t iouahabi/frontend:latest .
@@ -62,7 +61,6 @@ docker push iouahabi/frontend:latest
 ### 3️⃣ Configurer le fichier hosts
 
 Ajoute à la fin de `C:\Windows\System32\drivers\etc\hosts` :
-
 ```
 127.0.0.1 app.local
 ```
@@ -77,6 +75,7 @@ kubectl apply -f k8s/postgres.yaml
 kubectl apply -f k8s/backend.yaml
 kubectl apply -f k8s/frontend.yaml
 kubectl apply -f k8s/ingress.yaml
+kubectl apply -f k8s/frontend-hpa.yaml  # Bonus HPA
 ```
 
 ---
@@ -87,65 +86,68 @@ kubectl apply -f k8s/ingress.yaml
 kubectl get pods
 kubectl get services
 kubectl get ingress
+kubectl get hpa
 ```
 
 ---
 
 ### 6️⃣ Accéder à l’application
 
-* Frontend → [http://app.local/frontend](http://app.local/frontend)
-* Backend → [http://app.local/backend](http://app.local/backend)
+- Frontend → [http://app.local/frontend](http://app.local/frontend)  
+- Backend → [http://app.local/backend](http://app.local/backend)
 
 ---
 
 ## 🔐 Sécurité
 
-* Secrets stockés dans `k8s/secrets.yaml`
-* Variables d’environnement injectées dans les pods
+- Secrets stockés dans `k8s/secrets.yaml`
+- Variables d’environnement injectées dans les pods
 
 ---
 
-## 📊 Monitoring (bonus possible)
+## 📊 Tests réalisés
 
+- Suppression d’un pod frontend → Kubernetes recrée automatiquement le pod
+- Scale up/down :
 ```bash
-kubectl get pods -w
-kubectl describe pod <pod-name>
-kubectl logs <pod-name>
+kubectl scale deployment frontend --replicas=5
+kubectl scale deployment frontend --replicas=3
+```
+- Autoscaling (HPA) :
+```bash
+kubectl get hpa
 ```
 
 ---
 
-## 📷 Captures attendues pour le rendu
+## 📷 Captures
 
-✅ Cluster nodes (`kubectl get nodes`)
-✅ Pods running (`kubectl get pods`)
-✅ Services (`kubectl get services`)
-✅ Ingress (`kubectl get ingress`)
-✅ Tests de scalabilité : scale up/down, kill pod
-
----
-
-## ✅ Bonus recommandés (jusqu’à +5 points)
-
-* Autoscaling horizontal (HPA)
-* Rolling updates
-* NetworkPolicy
-* Helm charts
-* CI/CD pipeline
+- `kubectl get pods` → ![Get pods](./captures/Get%20pods.png)
+- `kubectl get services` → ![Get services](./captures/Get%20services.png)
+- `kubectl get ingress` → ![Get ingress](./captures/Get%20ingress.png)
+- Backend → ![Backend](./captures/Backend.png)
+- Frontend → ![Frontend](./captures/Frontend.png)
+- HPA → ![kubectl get hpa](./captures/Kubectl%20get%20hpa%20-w.png)
+- Test de résilience → ![Test de résilience Kubernetes](./captures/Test%20de%20résilience%20Kubernetes.png)
+- Schéma d’architecture → ![Schéma Architecture](./captures/A_diagram_of_a_clustered_web_application_architect.png)
 
 ---
 
-## ✏ Rapport final
+## ✅ Bonus réalisés
 
-* Schéma d’architecture
-* Étapes d’installation
-* Captures de preuve
-* Liste des bonus réalisés
+- Autoscaling horizontal (HPA)
+- Installation de Metrics Server
+
+---
+
+## ✏ Conclusion
+
+Ce projet démontre la capacité à déployer une application complète (frontend, backend, base de données) sur Kubernetes, avec haute disponibilité, ingress, secrets, et autoscaling.  
+Merci pour votre attention !
 
 ---
 
 ## 💬 Auteur
 
-* Docker Hub : iouahabi
-* GitHub : \[Narutino10]
-
+- Docker Hub : iouahabi  
+- GitHub : [Narutino10]
