@@ -122,13 +122,13 @@ kubectl get hpa
 
 ## 📷 Captures
 
-- `kubectl get pods` → ![Get pods](./captures/Get%20pods.png)
-- `kubectl get services` → ![Get services](./captures/Get%20services.png)
-- `kubectl get ingress` → ![Get ingress](./captures/Get%20ingress.png)
-- Backend → ![Backend](./captures/Backend.png)
-- Frontend → ![Frontend](./captures/Frontend.png)
-- HPA → ![kubectl get hpa](./captures/Kubectl%20get%20hpa%20-w.png)
-- Test de résilience → ![Test de résilience Kubernetes](./captures/Test%20de%20résilience%20Kubernetes.png)
+- `kubectl get pods` → ![Get pods](./captures/Get_pods.PNG)
+- `kubectl get services` → ![Get services](./captures/Get_services.PNG)
+- `kubectl get ingress` → ![Get ingress](./captures/Get_ingress.PNG)
+- Backend → ![Backend](./captures/Backend.PNG)
+- Frontend → ![Frontend](./captures/Frontend.PNG)
+- HPA → ![kubectl get hpa](./captures/Kubectl_get_hpa_-w.PNG)
+- Test de résilience → ![Test de résilience Kubernetes](./captures/Test_de_résilience_Kubernetes.PNG)
 - Schéma d’architecture → ![Schéma Architecture](./captures/A_diagram_of_a_clustered_web_application_architect.png)
 
 ---
